@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hỗ trợ · StoryAI</title>
+  <meta name="description" content="Trang hỗ trợ chính thức cho ứng dụng StoryAI - truyện AI tương tác." />
+  <style>
+    :root {
+      --bg: #0B0820;
+      --bg-card: #1A1235;
+      --text: #F8FAFC;
+      --text-muted: #C4B5FD;
+      --accent: #A78BFA;
+      --link: #06B6D4;
+      --pink: #EC4899;
+      --border: rgba(167, 139, 250, 0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding: 32px 20px 80px;
+      min-height: 100vh;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    header {
+      padding: 36px 32px;
+      background: linear-gradient(135deg, #6D28D9 0%, #EC4899 60%, #06B6D4 100%);
+      border-radius: 22px;
+      margin-bottom: 28px;
+      box-shadow: 0 20px 60px rgba(109, 40, 217, 0.25);
+      text-align: center;
+    }
+    header .logo { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.9; margin-bottom: 6px; }
+    header h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+    header p { font-size: 15px; opacity: 0.92; }
+    .contact-cta {
+      background: var(--bg-card);
+      padding: 28px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .contact-cta h2 { font-size: 18px; margin-bottom: 8px; }
+    .contact-cta p { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
+    .email-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #6D28D9 0%, #EC4899 100%);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(109, 40, 217, 0.4);
+      transition: transform 0.15s;
+    }
+    .email-btn:hover { transform: translateY(-1px); }
+    main { background: var(--bg-card); padding: 32px 28px; border-radius: 18px; border: 1px solid var(--border); margin-bottom: 24px; }
+    h2 { font-size: 19px; font-weight: 700; margin: 24px 0 12px; color: var(--accent); letter-spacing: -0.01em; }
+    h2:first-child { margin-top: 0; }
+    h3 { font-size: 15px; font-weight: 600; margin: 16px 0 6px; color: var(--text); }
+    p { margin: 8px 0; color: var(--text-muted); }
+    p strong, li strong { color: var(--text); font-weight: 600; }
+    ul, ol { margin: 10px 0 12px 22px; color: var(--text-muted); }
+    li { margin: 5px 0; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    details {
+      background: rgba(167, 139, 250, 0.05);
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border: 1px solid var(--border);
+    }
+    details[open] { background: rgba(167, 139, 250, 0.09); }
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text);
+      list-style: none;
+      position: relative;
+      padding-right: 24px;
+    }
+    summary::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 20px;
+      color: var(--accent);
+      transition: transform 0.2s;
+    }
+    details[open] summary::after { content: "−"; }
+    details > div { margin-top: 10px; color: var(--text-muted); font-size: 14px; }
+    .lang-switch { text-align: right; margin-bottom: 16px; font-size: 13px; }
+    footer { text-align: center; margin-top: 40px; font-size: 13px; color: var(--text-muted); opacity: 0.7; }
+    .small-row { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; font-size: 13px; margin-top: 10px; }
+    @media (max-width: 600px) {
+      body { padding: 20px 12px 60px; }
+      header { padding: 24px 20px; }
+      header h1 { font-size: 24px; }
+      main { padding: 22px 16px; }
+      h2 { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="lang-switch"><a href="#en">English ↓</a></div>
+
+    <header>
+      <div class="logo">STORYAI</div>
+      <h1>Trung tâm hỗ trợ</h1>
+      <p>Bạn chọn. AI dệt truyện.</p>
+    </header>
+
+    <div class="contact-cta">
+      <h2>Cần trợ giúp?</h2>
+      <p>Chúng tôi trả lời trong vòng 48h làm việc.</p>
+      <a class="email-btn" href="mailto:danhhuongvn@gmail.com?subject=StoryAI%20-%20Yêu%20cầu%20hỗ%20trợ">Gửi email hỗ trợ</a>
+      <div class="small-row">
+        <span><strong style="color:var(--text)">Email:</strong> <a href="mailto:danhhuongvn@gmail.com">danhhuongvn@gmail.com</a></span>
+      </div>
+    </div>
+
+    <main>
+      <h2>Câu hỏi thường gặp</h2>
+
+      <details>
+        <summary>StoryAI là gì?</summary>
+        <div>StoryAI là ứng dụng đọc truyện tương tác — mỗi lựa chọn của bạn sẽ dẫn AI viết tiếp câu chuyện theo hướng khác. Không có hai lần đọc giống nhau.</div>
+      </details>
+
+      <details>
+        <summary>Tôi không nhận được mã xác minh khi đăng ký?</summary>
+        <div>Kiểm tra thư mục Spam/Junk. Nếu không thấy sau 5 phút, thử lại với email khác hoặc liên hệ chúng tôi qua nút email phía trên.</div>
+      </details>
+
+      <details>
+        <summary>Coin của tôi bị mất sau khi mua?</summary>
+        <div>Mở app → Hồ sơ → Số dư. Nếu giao dịch đã hoàn tất ở App Store/Google Play nhưng coin chưa cộng, vui lòng gửi email kèm theo receipt (chụp màn hình từ App Store) - chúng tôi xử lý trong 24h.</div>
+      </details>
+
+      <details>
+        <summary>Tại sao app yêu cầu quyền tracking?</summary>
+        <div>Quyền này chỉ dùng cho quảng cáo cá nhân hóa qua Google AdMob. Nếu bạn từ chối, app vẫn hoạt động đầy đủ — chỉ là quảng cáo sẽ ít liên quan hơn. Bạn đổi quyết định bất kỳ lúc nào ở Cài đặt iOS → Quyền riêng tư → Theo dõi.</div>
+      </details>
+
+      <details>
+        <summary>Làm sao xoá tài khoản?</summary>
+        <div>
+          <p><strong>Trong app:</strong> Hồ sơ → Cài đặt → Xoá tài khoản. Xác nhận và mọi dữ liệu sẽ được xoá trong 90 ngày.</p>
+          <p><strong>Qua email:</strong> gửi yêu cầu từ địa chỉ email đăng ký tới <a href="mailto:danhhuongvn@gmail.com">danhhuongvn@gmail.com</a> với tiêu đề "Yêu cầu xoá tài khoản". Chúng tôi xử lý trong 7 ngày.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Truyện đột nhiên dừng hoặc lỗi sinh nội dung?</summary>
+        <div>Đôi khi máy chủ AI bị quá tải. Hãy thử: (1) đóng và mở lại app, (2) chờ vài phút rồi thử lại, (3) báo cáo lỗi qua email kèm screenshot.</div>
+      </details>
+
+      <details>
+        <summary>Tôi muốn báo cáo nội dung không phù hợp?</summary>
+        <div>Trong story viewer, nhấn nút Báo cáo (biểu tượng cờ) ở góc trên. Đội ngũ chúng tôi review trong 24h. Hoặc gửi email kèm screenshot và mô tả ngữ cảnh.</div>
+      </details>
+
+      <details>
+        <summary>App có hoạt động offline không?</summary>
+        <div>Bạn có thể đọc lại các chương đã sinh và lưu. Nhưng để sinh chương mới hoặc rẽ nhánh truyện, cần kết nối Internet vì AI chạy trên máy chủ.</div>
+      </details>
+
+      <details>
+        <summary>Khi nào có thêm thể loại truyện?</summary>
+        <div>Hiện có: Ngôn tình, Kinh dị, Giả tưởng, Học đường. Sắp ra: Trinh thám, Sci-fi, Lịch sử. Theo dõi @StoryAI_VN trên TikTok để cập nhật.</div>
+      </details>
+
+      <details>
+        <summary>Có chế độ đọc bằng giọng nói không?</summary>
+        <div>Voice mode đang trong roadmap. Chúng tôi sẽ thông báo trong app khi release.</div>
+      </details>
+
+      <h2>Tài nguyên</h2>
+      <ul>
+        <li><a href="./privacy.html">Chính sách bảo mật</a></li>
+        <li><a href="mailto:danhhuongvn@gmail.com">Liên hệ qua email</a></li>
+      </ul>
+    </main>
+
+    <hr style="margin: 56px 0; border: none; border-top: 1px solid var(--border);" id="en" />
+
+    <header>
+      <div class="logo">STORYAI</div>
+      <h1>Support Center</h1>
+      <p>You choose. AI weaves the story.</p>
+    </header>
+
+    <div class="contact-cta">
+      <h2>Need help?</h2>
+      <p>We respond within 48 business hours.</p>
+      <a class="email-btn" href="mailto:danhhuongvn@gmail.com?subject=StoryAI%20-%20Support%20Request">Email support</a>
+      <div class="small-row">
+        <span><strong style="color:var(--text)">Email:</strong> <a href="mailto:danhhuongvn@gmail.com">danhhuongvn@gmail.com</a></span>
+      </div>
+    </div>
+
+    <main>
+      <h2>FAQ</h2>
+
+      <details>
+        <summary>What is StoryAI?</summary>
+        <div>StoryAI is an interactive story app — each choice you make leads the AI to continue the story differently. No two reads are the same.</div>
+      </details>
+
+      <details>
+        <summary>I'm not receiving the verification code?</summary>
+        <div>Check your Spam/Junk folder. If you don't see it after 5 minutes, try another email or contact us via the email button above.</div>
+      </details>
+
+      <details>
+        <summary>My coins are missing after purchase?</summary>
+        <div>Open app → Profile → Balance. If the transaction completed on App Store/Google Play but coins didn't credit, email us with the receipt (App Store screenshot) — we'll resolve within 24h.</div>
+      </details>
+
+      <details>
+        <summary>Why does the app ask for tracking permission?</summary>
+        <div>Only used for personalized ads via Google AdMob. If you decline, the app works fully — ads will just be less relevant. You can change this anytime in iOS Settings → Privacy → Tracking.</div>
+      </details>
+
+      <details>
+        <summary>How do I delete my account?</summary>
+        <div>
+          <p><strong>In-app:</strong> Profile → Settings → Delete Account. Confirm, and all data will be removed within 90 days.</p>
+          <p><strong>By email:</strong> send a request from your registered email to <a href="mailto:danhhuongvn@gmail.com">danhhuongvn@gmail.com</a> with subject "Account Deletion Request". We process within 7 days.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Story stops generating or errors out?</summary>
+        <div>Sometimes the AI server is overloaded. Try: (1) close and reopen the app, (2) wait a few minutes and retry, (3) report via email with a screenshot.</div>
+      </details>
+
+      <details>
+        <summary>How do I report inappropriate content?</summary>
+        <div>In the story viewer, tap the Report button (flag icon) at the top. Our team reviews within 24h. Or email a screenshot with context.</div>
+      </details>
+
+      <details>
+        <summary>Does the app work offline?</summary>
+        <div>You can re-read saved chapters. But generating new chapters or branching the story requires an Internet connection since the AI runs server-side.</div>
+      </details>
+
+      <details>
+        <summary>When will more genres be added?</summary>
+        <div>Current: Romance, Horror, Fantasy, School Life. Coming: Mystery, Sci-fi, Historical. Follow @StoryAI_VN on TikTok for updates.</div>
+      </details>
+
+      <details>
+        <summary>Is there a voice mode?</summary>
+        <div>Voice mode is in our roadmap. We'll announce in the app when it ships.</div>
+      </details>
+
+      <h2>Resources</h2>
+      <ul>
+        <li><a href="./privacy.html">Privacy Policy</a></li>
+        <li><a href="mailto:danhhuongvn@gmail.com">Contact us</a></li>
+      </ul>
+    </main>
+
+    <footer>© 2026 StoryAI. All rights reserved.</footer>
+  </div>
+</body>
+</html>

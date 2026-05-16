@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chính sách bảo mật · StoryAI</title>
+  <meta name="description" content="Chính sách bảo mật cho ứng dụng StoryAI - truyện AI tương tác." />
+  <style>
+    :root {
+      --bg: #0B0820;
+      --bg-card: #1A1235;
+      --text: #F8FAFC;
+      --text-muted: #C4B5FD;
+      --accent: #A78BFA;
+      --link: #06B6D4;
+      --border: rgba(167, 139, 250, 0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding: 32px 20px 80px;
+      min-height: 100vh;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    header {
+      padding: 24px 28px;
+      background: linear-gradient(135deg, #6D28D9 0%, #EC4899 100%);
+      border-radius: 18px;
+      margin-bottom: 32px;
+      box-shadow: 0 20px 60px rgba(109, 40, 217, 0.25);
+    }
+    header h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; }
+    header .updated { margin-top: 6px; opacity: 0.85; font-size: 14px; }
+    main { background: var(--bg-card); padding: 36px 32px; border-radius: 18px; border: 1px solid var(--border); }
+    h2 { font-size: 19px; font-weight: 700; margin: 28px 0 12px; color: var(--accent); letter-spacing: -0.01em; }
+    h2:first-child { margin-top: 0; }
+    h3 { font-size: 16px; font-weight: 600; margin: 18px 0 8px; color: var(--text); }
+    p { margin: 10px 0; color: var(--text-muted); }
+    p strong, li strong { color: var(--text); font-weight: 600; }
+    ul, ol { margin: 10px 0 14px 24px; color: var(--text-muted); }
+    li { margin: 6px 0; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .lang-switch { text-align: right; margin-bottom: 16px; font-size: 13px; }
+    .note {
+      background: rgba(167, 139, 250, 0.08);
+      border-left: 3px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    footer { text-align: center; margin-top: 40px; font-size: 13px; color: var(--text-muted); opacity: 0.7; }
+    @media (max-width: 600px) {
+      body { padding: 20px 12px 60px; }
+      header { padding: 20px; }
+      header h1 { font-size: 22px; }
+      main { padding: 24px 18px; }
+      h2 { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="lang-switch"><a href="#en">English version below ↓</a></div>
+
+    <header>
+      <h1>Chính sách bảo mật</h1>
+      <div class="updated">Cập nhật lần cuối: 16/05/2026</div>
+    </header>
+
+    <main>
+      <p>StoryAI ("chúng tôi", "ứng dụng") tôn trọng quyền riêng tư của bạn. Tài liệu này giải thích dữ liệu chúng tôi thu thập, cách sử dụng, và quyền của bạn đối với dữ liệu đó.</p>
+
+      <h2>1. Dữ liệu chúng tôi thu thập</h2>
+
+      <h3>1.1 Thông tin bạn cung cấp</h3>
+      <ul>
+        <li><strong>Tài khoản:</strong> địa chỉ email, mật khẩu (lưu dạng hash), tên hiển thị khi bạn đăng ký.</li>
+        <li><strong>Lựa chọn trong truyện:</strong> các quyết định bạn chọn ở mỗi điểm rẽ nhánh được gửi tới máy chủ để AI viết tiếp.</li>
+        <li><strong>Báo cáo nội dung:</strong> nội dung và mô tả khi bạn báo cáo vi phạm.</li>
+      </ul>
+
+      <h3>1.2 Thông tin tự động thu thập</h3>
+      <ul>
+        <li><strong>Định danh thiết bị:</strong> bao gồm IDFA (Identifier for Advertisers) trên iOS - chỉ khi bạn cho phép tracking.</li>
+        <li><strong>Dữ liệu sử dụng:</strong> chương đã đọc, lựa chọn, tần suất mở app, thời gian phiên đọc.</li>
+        <li><strong>Thông tin thiết bị:</strong> model, hệ điều hành, ngôn ngữ, múi giờ.</li>
+        <li><strong>Token push notification:</strong> FCM token để gửi thông báo (chỉ khi bạn cho phép).</li>
+        <li><strong>Lịch sử mua hàng:</strong> các giao dịch IAP qua App Store/Google Play (chúng tôi nhận xác nhận, không nhận thông tin thẻ).</li>
+      </ul>
+
+      <h2>2. Cách chúng tôi sử dụng dữ liệu</h2>
+      <ul>
+        <li><strong>Vận hành dịch vụ:</strong> đăng nhập, lưu tiến trình đọc, gửi prompt tới AI để sinh truyện.</li>
+        <li><strong>Hiển thị quảng cáo:</strong> qua Google AdMob - bao gồm quảng cáo cá nhân hóa nếu bạn cho phép tracking.</li>
+        <li><strong>Phân tích:</strong> Firebase Analytics để hiểu cách user dùng app và cải thiện trải nghiệm.</li>
+        <li><strong>An toàn nội dung:</strong> kiểm duyệt 4 lớp (rule-based + AI judge) để chặn nội dung độc hại.</li>
+        <li><strong>Hỗ trợ:</strong> trả lời khi bạn liên hệ chúng tôi.</li>
+        <li><strong>Tuân thủ pháp lý:</strong> đáp ứng yêu cầu của cơ quan có thẩm quyền khi cần.</li>
+      </ul>
+
+      <h2>3. Tracking và quảng cáo</h2>
+      <p>StoryAI dùng Google AdMob để hiển thị quảng cáo (rewarded video, interstitial). Khi bạn mở app lần đầu trên iOS, bạn sẽ được hỏi về App Tracking Transparency:</p>
+      <ul>
+        <li><strong>Nếu cho phép:</strong> IDFA của bạn được chia sẻ với AdMob để cá nhân hóa quảng cáo và đo lường hiệu quả.</li>
+        <li><strong>Nếu từ chối:</strong> app vẫn hoạt động bình thường, chỉ là quảng cáo sẽ ít liên quan hơn (non-personalized ads).</li>
+      </ul>
+      <p>Bạn có thể đổi quyết định bất kỳ lúc nào trong Cài đặt iOS → Quyền riêng tư → Theo dõi.</p>
+
+      <h2>4. Chia sẻ dữ liệu với bên thứ ba</h2>
+      <p>Chúng tôi không bán dữ liệu cá nhân. Chúng tôi chia sẻ dữ liệu tối thiểu với các nhà cung cấp dịch vụ sau:</p>
+      <ul>
+        <li><strong>Google AdMob</strong> (Google LLC): hiển thị quảng cáo, IDFA nếu được phép.</li>
+        <li><strong>Firebase</strong> (Google LLC): Analytics, push notification, lưu trữ cấu hình.</li>
+        <li><strong>Anthropic / OpenAI:</strong> nhận prompt từ máy chủ chúng tôi để sinh nội dung truyện. Không gửi kèm thông tin định danh cá nhân.</li>
+        <li><strong>fal.ai / Replicate:</strong> sinh ảnh minh hoạ nhân vật khi cần.</li>
+        <li><strong>Cloudflare R2:</strong> lưu trữ ảnh và assets static.</li>
+        <li><strong>Railway:</strong> hosting máy chủ chính (Postgres + Redis + Node API).</li>
+        <li><strong>Apple / Google:</strong> xử lý giao dịch IAP.</li>
+      </ul>
+      <div class="note">Mỗi nhà cung cấp có chính sách riêng của họ. Khuyến nghị bạn đọc qua chính sách của Google, Apple, và Anthropic nếu muốn hiểu sâu hơn.</div>
+
+      <h2>5. Lưu trữ và bảo mật</h2>
+      <p>Dữ liệu được lưu trên máy chủ tại Hoa Kỳ và châu Âu (Railway + Cloudflare). Mật khẩu mã hóa one-way (bcrypt). Kết nối client-server qua TLS 1.2+. Chúng tôi giữ dữ liệu trong suốt thời gian tài khoản của bạn còn hoạt động và 90 ngày sau khi xoá tài khoản (để hỗ trợ khôi phục nếu bạn đổi ý).</p>
+
+      <h2>6. Quyền của bạn</h2>
+      <ul>
+        <li><strong>Truy cập dữ liệu:</strong> xem dữ liệu chúng tôi có về bạn - liên hệ qua email bên dưới.</li>
+        <li><strong>Xoá tài khoản:</strong> trong app vào Hồ sơ → Cài đặt → Xoá tài khoản. Hoặc gửi yêu cầu qua email.</li>
+        <li><strong>Sửa dữ liệu:</strong> đổi tên, email trong Hồ sơ.</li>
+        <li><strong>Rút lại đồng ý tracking:</strong> Cài đặt iOS → Theo dõi → tắt cho StoryAI.</li>
+        <li><strong>Xuất dữ liệu (data portability):</strong> liên hệ qua email, chúng tôi gửi file JSON trong 30 ngày.</li>
+      </ul>
+
+      <h2>7. Trẻ em</h2>
+      <p>StoryAI dành cho người dùng từ <strong>12 tuổi trở lên</strong>. Chúng tôi không cố ý thu thập dữ liệu của trẻ em dưới 12 tuổi. Nếu bạn là phụ huynh và phát hiện con mình đang dùng app, vui lòng liên hệ để chúng tôi xoá tài khoản.</p>
+
+      <h2>8. Nội dung do AI sinh</h2>
+      <p>Truyện trong StoryAI được sinh bởi mô hình AI (Claude/GPT). Nội dung có thể không phản ánh sự thật, quan điểm của chúng tôi, hay bất kỳ cá nhân nào. Mọi nội dung đi qua hệ thống kiểm duyệt 4 lớp để loại bỏ nội dung độc hại, nhưng không hoàn hảo 100%. Vui lòng dùng nút Báo cáo nếu bạn thấy nội dung vi phạm.</p>
+
+      <h2>9. Thay đổi chính sách</h2>
+      <p>Chúng tôi có thể cập nhật chính sách này. Khi thay đổi quan trọng, chúng tôi sẽ thông báo trong app hoặc qua email. Việc tiếp tục dùng app sau khi cập nhật đồng nghĩa bạn chấp nhận chính sách mới.</p>
+
+      <h2>10. Liên hệ</h2>
+      <p>Câu hỏi về quyền riêng tư hoặc yêu cầu liên quan dữ liệu, gửi tới:<br />
+      <strong>Email:</strong> <a href="mailto:danhhuongvn@gmail.com">danhhuongvn@gmail.com</a></p>
+    </main>
+
+    <hr style="margin: 56px 0; border: none; border-top: 1px solid var(--border);" id="en" />
+
+    <header>
+      <h1>Privacy Policy</h1>
+      <div class="updated">Last updated: 2026-05-16</div>
+    </header>
+
+    <main>
+      <p>StoryAI ("we", "the app") respects your privacy. This document explains what data we collect, how we use it, and your rights regarding that data.</p>
+
+      <h2>1. Data We Collect</h2>
+
+      <h3>1.1 Information you provide</h3>
+      <ul>
+        <li><strong>Account:</strong> email address, password (stored as hash), display name when you sign up.</li>
+        <li><strong>Story choices:</strong> the decisions you make at branching points are sent to our server so the AI can continue the story.</li>
+        <li><strong>Content reports:</strong> the content and description when you report a violation.</li>
+      </ul>
+
+      <h3>1.2 Information collected automatically</h3>
+      <ul>
+        <li><strong>Device identifiers:</strong> including IDFA (Identifier for Advertisers) on iOS - only if you allow tracking.</li>
+        <li><strong>Usage data:</strong> chapters read, choices made, app open frequency, session duration.</li>
+        <li><strong>Device information:</strong> model, operating system, language, timezone.</li>
+        <li><strong>Push notification token:</strong> FCM token to send notifications (only if you opt in).</li>
+        <li><strong>Purchase history:</strong> IAP transactions via App Store/Google Play (we receive confirmation, never card details).</li>
+      </ul>
+
+      <h2>2. How We Use Data</h2>
+      <ul>
+        <li><strong>Operate the service:</strong> sign-in, save reading progress, send prompts to AI for story generation.</li>
+        <li><strong>Show ads:</strong> via Google AdMob - including personalized ads if you allow tracking.</li>
+        <li><strong>Analytics:</strong> Firebase Analytics to understand usage and improve the experience.</li>
+        <li><strong>Content safety:</strong> 4-layer moderation (rule-based + AI judge) to block harmful content.</li>
+        <li><strong>Support:</strong> respond when you contact us.</li>
+        <li><strong>Legal compliance:</strong> respond to lawful requests from authorities.</li>
+      </ul>
+
+      <h2>3. Tracking and Advertising</h2>
+      <p>StoryAI uses Google AdMob to display ads (rewarded video, interstitial). When you first open the app on iOS, you'll be asked about App Tracking Transparency:</p>
+      <ul>
+        <li><strong>If you allow:</strong> your IDFA is shared with AdMob for personalized ads and measurement.</li>
+        <li><strong>If you decline:</strong> the app works normally, ads are just less relevant (non-personalized).</li>
+      </ul>
+      <p>You can change this anytime in iOS Settings → Privacy → Tracking.</p>
+
+      <h2>4. Sharing Data with Third Parties</h2>
+      <p>We do not sell personal data. We share minimal data with these service providers:</p>
+      <ul>
+        <li><strong>Google AdMob</strong> (Google LLC): ad serving, IDFA if permitted.</li>
+        <li><strong>Firebase</strong> (Google LLC): Analytics, push, remote config.</li>
+        <li><strong>Anthropic / OpenAI:</strong> receive prompts from our server to generate story content. No personal identifiers attached.</li>
+        <li><strong>fal.ai / Replicate:</strong> generate character illustrations when needed.</li>
+        <li><strong>Cloudflare R2:</strong> store images and static assets.</li>
+        <li><strong>Railway:</strong> hosting our backend (Postgres + Redis + Node API).</li>
+        <li><strong>Apple / Google:</strong> process IAP transactions.</li>
+      </ul>
+
+      <h2>5. Storage and Security</h2>
+      <p>Data is stored on servers in the United States and Europe (Railway + Cloudflare). Passwords are one-way hashed (bcrypt). Client-server connections use TLS 1.2+. We keep data while your account is active and for 90 days after deletion (for recovery if you change your mind).</p>
+
+      <h2>6. Your Rights</h2>
+      <ul>
+        <li><strong>Access:</strong> see data we have about you - email us.</li>
+        <li><strong>Delete account:</strong> in-app via Profile → Settings → Delete Account. Or email us.</li>
+        <li><strong>Correct data:</strong> change name, email in Profile.</li>
+        <li><strong>Withdraw tracking consent:</strong> iOS Settings → Tracking → disable for StoryAI.</li>
+        <li><strong>Data portability:</strong> email us, we send a JSON export within 30 days.</li>
+      </ul>
+
+      <h2>7. Children</h2>
+      <p>StoryAI is for users <strong>12 years and older</strong>. We do not knowingly collect data from children under 12. If you are a parent and find your child using the app, please contact us so we can delete the account.</p>
+
+      <h2>8. AI-Generated Content</h2>
+      <p>Stories in StoryAI are generated by AI models (Claude/GPT). Content may not reflect facts, our views, or any individual's views. All content passes through a 4-layer moderation system, but it is not 100% perfect. Please use the Report button if you find violating content.</p>
+
+      <h2>9. Policy Changes</h2>
+      <p>We may update this policy. For significant changes, we'll notify you in the app or by email. Continued use of the app after an update means you accept the new policy.</p>
+
+      <h2>10. Contact</h2>
+      <p>Privacy questions or data-related requests, send to:<br />
+      <strong>Email:</strong> <a href="mailto:danhhuongvn@gmail.com">danhhuongvn@gmail.com</a></p>
+    </main>
+
+    <footer>© 2026 StoryAI. All rights reserved.</footer>
+  </div>
+</body>
+</html>
