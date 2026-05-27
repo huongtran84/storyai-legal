@@ -45,6 +45,9 @@
     li { margin: 6px 0; }
     a { color: var(--link); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; font-size: 13px; }
+    .topbar .home { font-weight: 600; color: var(--text); opacity: 0.85; }
+    .topbar .home:hover { opacity: 1; }
     .lang-switch { text-align: right; margin-bottom: 16px; font-size: 13px; }
     .note {
       background: rgba(167, 139, 250, 0.08);
@@ -66,7 +69,10 @@
 </head>
 <body>
   <div class="container">
-    <div class="lang-switch"><a href="#en">English version below ↓</a></div>
+    <div class="topbar">
+      <a class="home" href="./">← StoryAI</a>
+      <a href="#en">English version below ↓</a>
+    </div>
 
     <header>
       <h1>Chính sách bảo mật</h1>
