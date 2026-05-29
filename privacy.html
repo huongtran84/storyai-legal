@@ -86,7 +86,7 @@
 
       <h3>1.1 Thông tin bạn cung cấp</h3>
       <ul>
-        <li><strong>Tài khoản:</strong> địa chỉ email, mật khẩu (lưu dạng hash), tên hiển thị khi bạn đăng ký.</li>
+        <li><strong>Tài khoản:</strong> địa chỉ email và tên hiển thị lấy từ tài khoản Google hoặc Apple khi bạn đăng nhập. Chúng tôi không dùng mật khẩu riêng — đăng nhập qua Google/Apple (OAuth).</li>
         <li><strong>Lựa chọn trong truyện:</strong> các quyết định bạn chọn ở mỗi điểm rẽ nhánh được gửi tới máy chủ để AI viết tiếp.</li>
         <li><strong>Báo cáo nội dung:</strong> nội dung và mô tả khi bạn báo cáo vi phạm.</li>
       </ul>
@@ -132,7 +132,7 @@
       <div class="note">Mỗi nhà cung cấp có chính sách riêng của họ. Khuyến nghị bạn đọc qua chính sách của Google, Apple, và Anthropic nếu muốn hiểu sâu hơn.</div>
 
       <h2>5. Lưu trữ và bảo mật</h2>
-      <p>Dữ liệu được lưu trên máy chủ tại Hoa Kỳ và châu Âu (Railway + Cloudflare). Mật khẩu mã hóa one-way (bcrypt). Kết nối client-server qua TLS 1.2+. Chúng tôi giữ dữ liệu trong suốt thời gian tài khoản của bạn còn hoạt động và 90 ngày sau khi xoá tài khoản (để hỗ trợ khôi phục nếu bạn đổi ý).</p>
+      <p>Dữ liệu được lưu trên máy chủ tại Hoa Kỳ và châu Âu (Railway + Cloudflare). Đăng nhập qua Google/Apple (OAuth) — chúng tôi không lưu mật khẩu. Kết nối client-server qua TLS 1.2+. Chúng tôi giữ dữ liệu trong suốt thời gian tài khoản của bạn còn hoạt động; khi bạn xoá tài khoản, dữ liệu được xoá vĩnh viễn ngay lập tức và không thể khôi phục. Xem chi tiết tại <a href="/delete-account">trang xóa tài khoản</a>.</p>
 
       <h2>6. Quyền của bạn</h2>
       <ul>
@@ -171,7 +171,7 @@
 
       <h3>1.1 Information you provide</h3>
       <ul>
-        <li><strong>Account:</strong> email address, password (stored as hash), display name when you sign up.</li>
+        <li><strong>Account:</strong> email address and display name taken from your Google or Apple account when you sign in. We do not use a separate password — sign-in is via Google/Apple (OAuth).</li>
         <li><strong>Story choices:</strong> the decisions you make at branching points are sent to our server so the AI can continue the story.</li>
         <li><strong>Content reports:</strong> the content and description when you report a violation.</li>
       </ul>
@@ -216,7 +216,7 @@
       </ul>
 
       <h2>5. Storage and Security</h2>
-      <p>Data is stored on servers in the United States and Europe (Railway + Cloudflare). Passwords are one-way hashed (bcrypt). Client-server connections use TLS 1.2+. We keep data while your account is active and for 90 days after deletion (for recovery if you change your mind).</p>
+      <p>Data is stored on servers in the United States and Europe (Railway + Cloudflare). Sign-in is via Google/Apple (OAuth) — we do not store passwords. Client-server connections use TLS 1.2+. We keep data while your account is active; when you delete your account, data is permanently deleted immediately and cannot be recovered. See details on the <a href="/delete-account">account deletion page</a>.</p>
 
       <h2>6. Your Rights</h2>
       <ul>
