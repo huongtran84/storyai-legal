@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xóa tài khoản · StoryAI</title>
+  <meta name="description" content="Hướng dẫn xóa tài khoản StoryAI và dữ liệu liên quan." />
+  <style>
+    :root {
+      --bg: #0B0820;
+      --bg-card: #1A1235;
+      --text: #F8FAFC;
+      --text-muted: #C4B5FD;
+      --accent: #A78BFA;
+      --link: #06B6D4;
+      --border: rgba(167, 139, 250, 0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding: 32px 20px 80px;
+      min-height: 100vh;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    header {
+      padding: 24px 28px;
+      background: linear-gradient(135deg, #6D28D9 0%, #EC4899 100%);
+      border-radius: 18px;
+      margin-bottom: 32px;
+      box-shadow: 0 20px 60px rgba(109, 40, 217, 0.25);
+    }
+    header h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; }
+    header .updated { margin-top: 6px; opacity: 0.85; font-size: 14px; }
+    main { background: var(--bg-card); padding: 36px 32px; border-radius: 18px; border: 1px solid var(--border); }
+    h2 { font-size: 19px; font-weight: 700; margin: 28px 0 12px; color: var(--accent); letter-spacing: -0.01em; }
+    h2:first-child { margin-top: 0; }
+    h3 { font-size: 16px; font-weight: 600; margin: 18px 0 8px; color: var(--text); }
+    p { margin: 10px 0; color: var(--text-muted); }
+    p strong, li strong { color: var(--text); font-weight: 600; }
+    ul, ol { margin: 10px 0 14px 24px; color: var(--text-muted); }
+    li { margin: 6px 0; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; font-size: 13px; }
+    .topbar .home { font-weight: 600; color: var(--text); opacity: 0.85; }
+    .topbar .home:hover { opacity: 1; }
+    .lang-switch { text-align: right; margin-bottom: 16px; font-size: 13px; }
+    .note {
+      background: rgba(167, 139, 250, 0.08);
+      border-left: 3px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    footer { text-align: center; margin-top: 40px; font-size: 13px; color: var(--text-muted); opacity: 0.7; }
+    @media (max-width: 600px) {
+      body { padding: 20px 12px 60px; }
+      header { padding: 20px; }
+      header h1 { font-size: 22px; }
+      main { padding: 24px 18px; }
+      h2 { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <a class="home" href="./">← StoryAI</a>
+      <a href="#en">English version below ↓</a>
+    </div>
+
+    <header>
+      <h1>Xóa tài khoản</h1>
+      <div class="updated">Cập nhật lần cuối: 29/05/2026</div>
+    </header>
+
+    <main>
+      <p>Trang này hướng dẫn cách yêu cầu xóa tài khoản <strong>StoryAI</strong> và dữ liệu liên quan.</p>
+
+      <h2>Cách 1 — Xóa ngay trong ứng dụng (khuyến nghị)</h2>
+      <ol>
+        <li>Mở ứng dụng <strong>StoryAI</strong> và đăng nhập.</li>
+        <li>Vào tab <strong>Hồ sơ</strong> (Cá nhân).</li>
+        <li>Chọn <strong>“Xóa tài khoản”</strong>.</li>
+        <li>Xác nhận. Tài khoản và dữ liệu được xóa <strong>vĩnh viễn ngay lập tức</strong>.</li>
+      </ol>
+
+      <h2>Cách 2 — Nếu bạn đã gỡ ứng dụng</h2>
+      <p>Gửi email tới <strong>danhhuongvn@gmail.com</strong> với tiêu đề
+      <em>“Yêu cầu xóa tài khoản StoryAI”</em>, kèm địa chỉ email Google/Apple bạn đã dùng
+      để đăng nhập. Chúng tôi xử lý trong vòng <strong>30 ngày</strong>.</p>
+
+      <h2>Dữ liệu bị xóa vĩnh viễn</h2>
+      <ul>
+        <li>Thông tin tài khoản &amp; hồ sơ (tên, email từ đăng nhập Google/Apple)</li>
+        <li>Phiên đăng nhập và dữ liệu xác thực</li>
+        <li>Tiến trình đọc truyện</li>
+        <li>Ví xu và lịch sử giao dịch xu</li>
+        <li>Nội dung (nhánh truyện) đã mở khóa</li>
+        <li>Lịch sử mua hàng trong ứng dụng (IAP)</li>
+        <li>Sự kiện quảng cáo và token thông báo đẩy (push)</li>
+        <li>Đánh giá ứng dụng và báo cáo bạn đã gửi</li>
+      </ul>
+
+      <h2>Dữ liệu được giữ lại</h2>
+      <ul>
+        <li>Nhật ký chi phí/sử dụng AI ở dạng <strong>ẩn danh</strong> (đã gỡ liên kết với
+            danh tính của bạn), giữ để đối soát tài chính.</li>
+        <li>Các truyện được tạo không gắn với danh tính cá nhân và có thể được giữ lại
+            dưới dạng nội dung ẩn danh trong thư viện chung.</li>
+        <li>Hồ sơ giao dịch có thể được lưu theo yêu cầu pháp luật/kế toán.</li>
+      </ul>
+
+      <div class="note">Việc xóa là <strong>không thể hoàn tác</strong>. Sau khi xóa, lần
+      đăng nhập tiếp theo sẽ tạo một tài khoản mới hoàn toàn.</div>
+
+      <h2>Liên hệ</h2>
+      <p><strong>Email:</strong> <a href="mailto:danhhuongvn@gmail.com">danhhuongvn@gmail.com</a></p>
+    </main>
+
+    <hr style="margin: 56px 0; border: none; border-top: 1px solid var(--border);" id="en" />
+
+    <header>
+      <h1>Delete Account</h1>
+      <div class="updated">Last updated: 2026-05-29</div>
+    </header>
+
+    <main>
+      <p>This page explains how to request deletion of your <strong>StoryAI</strong> account and associated data.</p>
+
+      <h2>Option 1 — Delete in the app (recommended)</h2>
+      <ol>
+        <li>Open the <strong>StoryAI</strong> app and sign in.</li>
+        <li>Go to the <strong>Profile</strong> tab.</li>
+        <li>Tap <strong>“Delete account”</strong>.</li>
+        <li>Confirm. Your account and data are <strong>permanently deleted immediately</strong>.</li>
+      </ol>
+
+      <h2>Option 2 — If you have uninstalled the app</h2>
+      <p>Email <strong>danhhuongvn@gmail.com</strong> with the subject
+      <em>“StoryAI account deletion request”</em>, including the Google/Apple email address
+      you used to sign in. We process requests within <strong>30 days</strong>.</p>
+
+      <h2>Data that is permanently deleted</h2>
+      <ul>
+        <li>Account &amp; profile info (name, email from Google/Apple sign-in)</li>
+        <li>Login sessions and authentication data</li>
+        <li>Reading progress</li>
+        <li>Coin wallet and coin transaction history</li>
+        <li>Unlocked story branches</li>
+        <li>In-app purchase (IAP) history</li>
+        <li>Ad events and push notification tokens</li>
+        <li>App reviews and reports you have filed</li>
+      </ul>
+
+      <h2>Data that is retained</h2>
+      <ul>
+        <li>AI cost/usage logs in <strong>de-identified</strong> form (unlinked from your
+            identity), kept for financial reconciliation.</li>
+        <li>Stories you created are not tied to your personal identity and may be retained
+            as anonymous content in the shared catalog.</li>
+        <li>Transaction records may be retained as required by law/accounting.</li>
+      </ul>
+
+      <div class="note">Deletion is <strong>irreversible</strong>. After deletion, your next
+      sign-in creates a brand-new account.</div>
+
+      <h2>Contact</h2>
+      <p><strong>Email:</strong> <a href="mailto:danhhuongvn@gmail.com">danhhuongvn@gmail.com</a></p>
+    </main>
+
+    <footer>© 2026 StoryAI. All rights reserved.</footer>
+  </div>
+</body>
+</html>
