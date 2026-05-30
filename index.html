@@ -120,7 +120,9 @@
     h1 { font-size: clamp(38px, 6vw, 60px); font-weight: 800; line-height: 1.04; letter-spacing: -0.03em; }
     h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
     .lede { margin: 22px 0 32px; font-size: 18px; color: var(--text-muted); max-width: 30em; }
-    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    /* margin-based spacing (not flex `gap`) so buttons don't touch on iOS Safari < 14.5 */
+    .cta-row { display: flex; flex-wrap: wrap; align-items: center; margin: 0 -7px; }
+    .cta-row > * { margin: 7px; }
     .store-note { margin-top: 18px; font-size: 13px; color: var(--text-muted); opacity: 0.8; display: flex; align-items: center; gap: 8px; }
     .store-note svg { flex: none; }
 
