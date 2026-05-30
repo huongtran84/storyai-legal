@@ -73,9 +73,10 @@
       border-bottom: 1px solid var(--border);
     }
     nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; letter-spacing: -0.01em; }
-    .brand img { width: 30px; height: 30px; border-radius: 8px; box-shadow: 0 4px 14px rgba(109,40,217,0.45); }
-    .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 500; }
+    .brand { display: flex; align-items: center; font-weight: 800; font-size: 18px; letter-spacing: -0.01em; }
+    .brand img { width: 30px; height: 30px; margin-right: 10px; border-radius: 8px; box-shadow: 0 4px 14px rgba(109,40,217,0.45); }
+    .nav-links { display: flex; align-items: center; font-size: 14px; font-weight: 500; }
+    .nav-links a + a { margin-left: 28px; }
     .nav-links a { color: var(--text-muted); transition: color .15s; }
     .nav-links a:hover { color: var(--text); }
     @media (max-width: 640px) { .nav-links { display: none; } }
@@ -94,14 +95,14 @@
     .btn-ghost:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
     /* Store badges (Apple App Store + Google Play) */
     .btn-appstore, .btn-googleplay {
-      display: inline-flex; align-items: center; justify-content: center; gap: 11px;
+      display: inline-flex; align-items: center; justify-content: center;
       background: #fff; color: #0B0820;
       padding: 10px 22px; border-radius: 14px; min-width: 208px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.35); transition: transform .15s, box-shadow .15s;
     }
     .btn-appstore:hover, .btn-googleplay:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,0,0,0.45); }
-    .btn-appstore svg { width: 22px; height: 26px; fill: #0B0820; flex: none; }
-    .btn-googleplay svg { width: 24px; height: 24px; flex: none; }
+    .btn-appstore svg { width: 22px; height: 26px; margin-right: 11px; fill: #0B0820; flex: none; }
+    .btn-googleplay svg { width: 24px; height: 24px; margin-right: 11px; flex: none; }
     .asb-text { display: flex; flex-direction: column; line-height: 1.06; text-align: left; }
     .asb-text small { font-size: 11px; font-weight: 600; opacity: 0.78; }
     .asb-text strong { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
@@ -110,21 +111,21 @@
     .hero { padding: 72px 0 40px; }
     .hero .wrap { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; }
     .eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center;
       font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--accent);
       background: rgba(167,139,250,0.1); border: 1px solid var(--border);
       padding: 7px 14px; border-radius: 999px; margin-bottom: 22px;
     }
-    .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 10px var(--pink); }
+    .eyebrow .dot { width: 7px; height: 7px; margin-right: 8px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 10px var(--pink); }
     h1 { font-size: clamp(38px, 6vw, 60px); font-weight: 800; line-height: 1.04; letter-spacing: -0.03em; }
     h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
     .lede { margin: 22px 0 32px; font-size: 18px; color: var(--text-muted); max-width: 30em; }
     /* margin-based spacing (not flex `gap`) so buttons don't touch on iOS Safari < 14.5 */
     .cta-row { display: flex; flex-wrap: wrap; align-items: center; margin: 0 -7px; }
     .cta-row > * { margin: 7px; }
-    .store-note { margin-top: 18px; font-size: 13px; color: var(--text-muted); opacity: 0.8; display: flex; align-items: center; gap: 8px; }
-    .store-note svg { flex: none; }
+    .store-note { margin-top: 18px; font-size: 13px; color: var(--text-muted); opacity: 0.8; display: flex; align-items: center; }
+    .store-note svg { flex: none; margin-right: 8px; }
 
     /* hero phones */
     .phones { position: relative; display: flex; justify-content: center; align-items: center; min-height: 460px; }
@@ -165,9 +166,9 @@
 
     /* ---------- Showcase ---------- */
     .showcase { background: var(--bg-2); }
-    .gallery { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+    .gallery { display: flex; justify-content: center; flex-wrap: wrap; }
     .gallery figure {
-      width: 210px; border-radius: 22px; overflow: hidden;
+      width: 210px; margin: 9px; border-radius: 22px; overflow: hidden;
       border: 1px solid rgba(255,255,255,0.1);
       box-shadow: 0 20px 50px rgba(0,0,0,0.45);
       transition: transform .2s;
@@ -187,9 +188,9 @@
     .step p { color: var(--text-muted); font-size: 14.5px; }
 
     /* ---------- Genres ---------- */
-    .genres { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 8px; }
+    .genres { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
     .chip {
-      padding: 10px 20px; border-radius: 999px; font-weight: 600; font-size: 14px;
+      margin: 6px; padding: 10px 20px; border-radius: 999px; font-weight: 600; font-size: 14px;
       border: 1px solid var(--border); background: rgba(167,139,250,0.07); color: var(--text);
     }
     .chip.soon { color: var(--text-muted); opacity: 0.7; }
@@ -207,11 +208,12 @@
 
     /* ---------- Footer ---------- */
     footer { border-top: 1px solid var(--border); padding: 48px 0 40px; }
-    .foot-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 28px; align-items: flex-start; }
-    .foot-brand { max-width: 280px; }
+    .foot-grid { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: flex-start; }
+    .foot-brand { max-width: 280px; margin-bottom: 28px; }
     .foot-brand .brand { margin-bottom: 12px; }
     .foot-brand p { color: var(--text-muted); font-size: 14px; }
-    .foot-links { display: flex; gap: 56px; flex-wrap: wrap; }
+    .foot-links { display: flex; flex-wrap: wrap; }
+    .foot-col + .foot-col { margin-left: 56px; }
     .foot-col h4 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
     .foot-col a { display: block; color: var(--text); opacity: 0.85; font-size: 14.5px; margin-bottom: 10px; transition: opacity .15s; }
     .foot-col a:hover { opacity: 1; color: var(--accent); }
