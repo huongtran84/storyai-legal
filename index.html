@@ -17,7 +17,39 @@
 
   <link rel="icon" type="image/png" href="./assets/app-icon.png" />
   <link rel="apple-touch-icon" href="./assets/app-icon.png" />
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    // Language: vi for visitors in Vietnam, en elsewhere. The Cloudflare Pages
+    // function (functions/_middleware.js) sets data-lang server-side from the
+    // request country (no flash, correct for crawlers); this script handles a
+    // manual override (?lang= or saved choice) and the nav VI|EN toggle.
+    (function () {
+      var d = document.documentElement;
+      d.classList.add('js');
+      var META = {
+        vi: { t: 'StoryAI · Bạn chọn. AI dệt truyện.', d: 'StoryAI — ứng dụng đọc truyện AI tương tác. Mỗi lựa chọn của bạn dẫn AI viết tiếp một câu chuyện khác. Ngôn tình, kinh dị, giả tưởng, học đường.' },
+        en: { t: 'StoryAI · You choose. AI weaves the tale.', d: 'StoryAI — an interactive AI storytelling app. Every choice you make leads AI to write a different story. Romance, horror, fantasy, school life.' }
+      };
+      function setDesc(s) { var m = document.querySelector('meta[name="description"]'); if (m) m.setAttribute('content', s); }
+      function apply(l) { d.setAttribute('data-lang', l); d.setAttribute('lang', l); if (META[l]) { document.title = META[l].t; setDesc(META[l].d); } }
+      function resolve() {
+        var q = null, s = null;
+        try { q = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+        try { s = localStorage.getItem('lang'); } catch (e) {}
+        var l = q || s || d.getAttribute('data-lang');
+        if (l !== 'vi' && l !== 'en') {
+          var n = navigator.languages || [navigator.language || 'en'];
+          l = n.some(function (x) { return (x || '').toLowerCase().indexOf('vi') === 0; }) ? 'vi' : 'en';
+        }
+        return l;
+      }
+      apply(resolve());
+      window.__setLang = function (l) { if (l !== 'vi' && l !== 'en') return; try { localStorage.setItem('lang', l); } catch (e) {} apply(l); };
+      document.addEventListener('DOMContentLoaded', function () {
+        var t = document.querySelector('.lang-toggle');
+        if (t) t.addEventListener('click', function (e) { var b = e.target.closest('[data-set-lang]'); if (b) window.__setLang(b.getAttribute('data-set-lang')); });
+      });
+    })();
+  </script>
 
   <style>
     :root {
@@ -37,6 +69,23 @@
       --max: 1080px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ---------- i18n: show only the active language (default vi until data-lang set) ---------- */
+    html:not([data-lang]) [lang="en"],
+    html[data-lang="vi"] [lang="en"],
+    html[data-lang="en"] [lang="vi"] { display: none; }
+    .lang-toggle {
+      display: inline-flex; align-items: center; flex: none;
+      border: 1px solid var(--border); border-radius: 999px; overflow: hidden;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .lang-toggle button {
+      padding: 6px 11px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+      color: var(--text-muted); background: none; border: 0; cursor: pointer;
+      transition: color .15s, background .15s;
+    }
+    html[data-lang="vi"] .lang-toggle [data-set-lang="vi"],
+    html[data-lang="en"] .lang-toggle [data-set-lang="en"] { background: var(--grad-soft); color: #fff; }
     html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
@@ -73,6 +122,8 @@
       border-bottom: 1px solid var(--border);
     }
     nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-right { display: flex; align-items: center; }
+    .nav-right .nav-links { margin-right: 24px; }
     .brand { display: flex; align-items: center; font-weight: 800; font-size: 18px; letter-spacing: -0.01em; }
     .brand img { width: 30px; height: 30px; margin-right: 10px; border-radius: 8px; box-shadow: 0 4px 14px rgba(109,40,217,0.45); }
     .nav-links { display: flex; align-items: center; font-size: 14px; font-weight: 500; }
@@ -262,11 +313,17 @@
         <img src="./assets/app-icon.png" alt="StoryAI" />
         StoryAI
       </a>
-      <div class="nav-links">
-        <a href="#features">Tính năng</a>
-        <a href="#how">Cách hoạt động</a>
-        <a href="./support.html">Hỗ trợ</a>
-        <a href="./privacy.html">Bảo mật</a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#features"><span lang="vi">Tính năng</span><span lang="en">Features</span></a>
+          <a href="#how"><span lang="vi">Cách hoạt động</span><span lang="en">How it works</span></a>
+          <a href="./support.html"><span lang="vi">Hỗ trợ</span><span lang="en">Support</span></a>
+          <a href="./privacy.html"><span lang="vi">Bảo mật</span><span lang="en">Privacy</span></a>
+        </div>
+        <div class="lang-toggle" role="group" aria-label="Language / Ngôn ngữ">
+          <button type="button" data-set-lang="vi">VI</button>
+          <button type="button" data-set-lang="en">EN</button>
+        </div>
       </div>
     </div>
   </nav>
@@ -275,23 +332,25 @@
   <header class="hero">
     <div class="wrap">
       <div>
-        <span class="eyebrow"><span class="dot"></span> Truyện AI tương tác</span>
-        <h1>Bạn chọn.<br /><span class="grad">AI dệt truyện.</span></h1>
-        <p class="lede">Mỗi quyết định của bạn mở ra một ngã rẽ mới. AI viết tiếp câu chuyện theo hướng bạn chọn — không có hai lần đọc nào giống nhau.</p>
+        <span class="eyebrow"><span class="dot"></span> <span lang="vi">Truyện AI tương tác</span><span lang="en">Interactive AI stories</span></span>
+        <h1 lang="vi">Bạn chọn.<br /><span class="grad">AI dệt truyện.</span></h1>
+        <h1 lang="en">You choose.<br /><span class="grad">AI weaves the tale.</span></h1>
+        <p class="lede" lang="vi">Mỗi quyết định của bạn mở ra một ngã rẽ mới. AI viết tiếp câu chuyện theo hướng bạn chọn — không có hai lần đọc nào giống nhau.</p>
+        <p class="lede" lang="en">Every decision opens a new branch. AI continues the story the way you choose — no two reads are ever alike.</p>
         <div class="cta-row">
           <a class="btn-appstore" href="https://apps.apple.com/app/id6769643475" target="_blank" rel="noopener" aria-label="Tải StoryAI trên App Store">
             <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C32.3 141.2 0 184.8 0 273.5c0 26.2 4.8 53.3 14.4 81.2 12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-            <span class="asb-text"><small>Tải về trên</small><strong>App Store</strong></span>
+            <span class="asb-text"><small><span lang="vi">Tải về trên</span><span lang="en">Download on the</span></small><strong>App Store</strong></span>
           </a>
           <a class="btn-googleplay" href="https://play.google.com/store/apps/details?id=vn.storyai.story_ai" target="_blank" rel="noopener" aria-label="Tải StoryAI trên Google Play">
             <svg viewBox="0 0 512 512" aria-hidden="true"><path fill="url(#gpGrad)" d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z"/></svg>
-            <span class="asb-text"><small>Tải về trên</small><strong>Google Play</strong></span>
+            <span class="asb-text"><small><span lang="vi">Tải về trên</span><span lang="en">GET IT ON</span></small><strong>Google Play</strong></span>
           </a>
-          <a class="btn btn-ghost" href="https://www.tiktok.com/@StoryAI_VN" target="_blank" rel="noopener">Theo dõi @StoryAI_VN</a>
+          <a class="btn btn-ghost" href="https://www.tiktok.com/@StoryAI_VN" target="_blank" rel="noopener"><span lang="vi">Theo dõi @StoryAI_VN</span><span lang="en">Follow @StoryAI_VN</span></a>
         </div>
         <div class="store-note">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1.2 14.6l-4.4-4.4 1.4-1.4 3 3 6.2-6.2 1.4 1.4-7.6 7.6z"/></svg>
-          Đã có trên App Store và Google Play · Tải miễn phí
+          <span lang="vi">Đã có trên App Store và Google Play · Tải miễn phí</span><span lang="en">Available on App Store &amp; Google Play · Free download</span>
         </div>
       </div>
       <div class="phones">
@@ -306,31 +365,39 @@
   <section id="features">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Vì sao StoryAI</span>
-        <h2>Câu chuyện viết riêng cho bạn</h2>
-        <p>Không phải truyện viết sẵn. Đây là câu chuyện sống — phản ứng theo từng lựa chọn của bạn.</p>
+        <span class="eyebrow"><span lang="vi">Vì sao StoryAI</span><span lang="en">Why StoryAI</span></span>
+        <h2 lang="vi">Câu chuyện viết riêng cho bạn</h2>
+        <h2 lang="en">A story written just for you</h2>
+        <p lang="vi">Không phải truyện viết sẵn. Đây là câu chuyện sống — phản ứng theo từng lựa chọn của bạn.</p>
+        <p lang="en">Not a pre-written tale — a living story that reacts to every choice you make.</p>
       </div>
       <div class="features">
         <div class="card reveal">
           <div class="ic">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 01-9 9"/></svg>
           </div>
-          <h3>Mỗi lựa chọn một ngã rẽ</h3>
-          <p>Cuối mỗi tập là 2 lựa chọn dẫn tới những hướng đi khác nhau. Quyết định của bạn định hình cốt truyện.</p>
+          <h3 lang="vi">Mỗi lựa chọn một ngã rẽ</h3>
+          <h3 lang="en">Every choice, a new path</h3>
+          <p lang="vi">Cuối mỗi tập là 2 lựa chọn dẫn tới những hướng đi khác nhau. Quyết định của bạn định hình cốt truyện.</p>
+          <p lang="en">Each episode ends with 2 choices that lead in different directions. Your decisions shape the plot.</p>
         </div>
         <div class="card reveal">
           <div class="ic">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg>
           </div>
-          <h3>Nhân vật nhất quán</h3>
-          <p>Nhân vật giữ nguyên gương mặt và tính cách xuyên suốt câu chuyện, được minh hoạ sống động qua từng cảnh.</p>
+          <h3 lang="vi">Nhân vật nhất quán</h3>
+          <h3 lang="en">Consistent characters</h3>
+          <p lang="vi">Nhân vật giữ nguyên gương mặt và tính cách xuyên suốt câu chuyện, được minh hoạ sống động qua từng cảnh.</p>
+          <p lang="en">Characters keep the same face and personality throughout, vividly illustrated in every scene.</p>
         </div>
         <div class="card reveal">
           <div class="ic">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
           </div>
-          <h3>An toàn nội dung</h3>
-          <p>Hệ thống kiểm duyệt 4 lớp lọc nội dung độc hại trước khi đến tay bạn. Đọc yên tâm, không lo bất ngờ.</p>
+          <h3 lang="vi">An toàn nội dung</h3>
+          <h3 lang="en">Safe content</h3>
+          <p lang="vi">Hệ thống kiểm duyệt 4 lớp lọc nội dung độc hại trước khi đến tay bạn. Đọc yên tâm, không lo bất ngờ.</p>
+          <p lang="en">A 4-layer moderation system filters harmful content before it reaches you. Read with total peace of mind.</p>
         </div>
       </div>
     </div>
@@ -340,9 +407,11 @@
   <section class="showcase">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Bên trong app</span>
-        <h2>Đọc như xem phim</h2>
-        <p>Giao diện visual novel mượt mà, ảnh minh hoạ theo từng cảnh, nhịp đọc do bạn làm chủ.</p>
+        <span class="eyebrow"><span lang="vi">Bên trong app</span><span lang="en">Inside the app</span></span>
+        <h2 lang="vi">Đọc như xem phim</h2>
+        <h2 lang="en">Reads like a movie</h2>
+        <p lang="vi">Giao diện visual novel mượt mà, ảnh minh hoạ theo từng cảnh, nhịp đọc do bạn làm chủ.</p>
+        <p lang="en">A smooth visual-novel interface, scene-by-scene art, and a reading pace you control.</p>
       </div>
       <div class="gallery">
         <figure class="reveal"><img src="./assets/screen-home.png" alt="Trang chủ StoryAI" loading="lazy" /></figure>
@@ -357,38 +426,46 @@
   <section id="how">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Cách hoạt động</span>
-        <h2>Bắt đầu trong 30 giây</h2>
+        <span class="eyebrow"><span lang="vi">Cách hoạt động</span><span lang="en">How it works</span></span>
+        <h2 lang="vi">Bắt đầu trong 30 giây</h2>
+        <h2 lang="en">Start in 30 seconds</h2>
       </div>
       <div class="steps">
         <div class="step reveal">
           <div class="num"></div>
-          <h3>Chọn thể loại</h3>
-          <p>Ngôn tình, kinh dị, giả tưởng hay học đường — chọn thế giới bạn muốn bước vào.</p>
+          <h3 lang="vi">Chọn thể loại</h3>
+          <h3 lang="en">Pick a genre</h3>
+          <p lang="vi">Ngôn tình, kinh dị, giả tưởng hay học đường — chọn thế giới bạn muốn bước vào.</p>
+          <p lang="en">Romance, horror, fantasy or school life — choose the world you want to step into.</p>
         </div>
         <div class="step reveal">
           <div class="num"></div>
-          <h3>Đọc &amp; quyết định</h3>
-          <p>Theo dõi câu chuyện rồi chọn hướng đi ở mỗi điểm rẽ nhánh quan trọng.</p>
+          <h3 lang="vi">Đọc &amp; quyết định</h3>
+          <h3 lang="en">Read &amp; decide</h3>
+          <p lang="vi">Theo dõi câu chuyện rồi chọn hướng đi ở mỗi điểm rẽ nhánh quan trọng.</p>
+          <p lang="en">Follow the story, then pick your direction at every key branching point.</p>
         </div>
         <div class="step reveal">
           <div class="num"></div>
-          <h3>AI viết tiếp</h3>
-          <p>AI dệt nên tập tiếp theo dựa trên lựa chọn của bạn, kèm ảnh minh hoạ mới.</p>
+          <h3 lang="vi">AI viết tiếp</h3>
+          <h3 lang="en">AI writes on</h3>
+          <p lang="vi">AI dệt nên tập tiếp theo dựa trên lựa chọn của bạn, kèm ảnh minh hoạ mới.</p>
+          <p lang="en">AI weaves the next episode from your choice, complete with fresh illustrations.</p>
         </div>
       </div>
 
       <div class="section-head reveal" style="margin-top:64px; margin-bottom:24px;">
-        <h2 style="font-size:clamp(22px,3vw,28px)">Nhiều thể loại để khám phá</h2>
+        <h2 style="font-size:clamp(22px,3vw,28px)" lang="vi">Nhiều thể loại để khám phá</h2>
+        <h2 style="font-size:clamp(22px,3vw,28px)" lang="en">Many genres to explore</h2>
       </div>
       <div class="genres reveal">
-        <span class="chip">Ngôn tình</span>
-        <span class="chip">Kinh dị</span>
-        <span class="chip">Giả tưởng</span>
-        <span class="chip">Học đường</span>
-        <span class="chip soon">Trinh thám · sắp ra</span>
-        <span class="chip soon">Sci-fi · sắp ra</span>
-        <span class="chip soon">Lịch sử · sắp ra</span>
+        <span class="chip"><span lang="vi">Ngôn tình</span><span lang="en">Romance</span></span>
+        <span class="chip"><span lang="vi">Kinh dị</span><span lang="en">Horror</span></span>
+        <span class="chip"><span lang="vi">Giả tưởng</span><span lang="en">Fantasy</span></span>
+        <span class="chip"><span lang="vi">Học đường</span><span lang="en">School life</span></span>
+        <span class="chip soon"><span lang="vi">Trinh thám · sắp ra</span><span lang="en">Mystery · coming soon</span></span>
+        <span class="chip soon"><span lang="vi">Sci-fi · sắp ra</span><span lang="en">Sci-fi · coming soon</span></span>
+        <span class="chip soon"><span lang="vi">Lịch sử · sắp ra</span><span lang="en">History · coming soon</span></span>
       </div>
     </div>
   </section>
@@ -397,16 +474,18 @@
   <section class="cta-band">
     <div class="wrap">
       <div class="cta-inner reveal">
-        <h2>Sẵn sàng dệt câu chuyện của riêng bạn?</h2>
-        <p>StoryAI đã có trên App Store và Google Play. Tải miễn phí và bắt đầu câu chuyện đầu tiên của bạn ngay hôm nay.</p>
+        <h2 lang="vi">Sẵn sàng dệt câu chuyện của riêng bạn?</h2>
+        <h2 lang="en">Ready to weave your own story?</h2>
+        <p lang="vi">StoryAI đã có trên App Store và Google Play. Tải miễn phí và bắt đầu câu chuyện đầu tiên của bạn ngay hôm nay.</p>
+        <p lang="en">StoryAI is now on the App Store and Google Play. Download free and start your first story today.</p>
         <div class="cta-row" style="justify-content:center">
           <a class="btn-appstore" href="https://apps.apple.com/app/id6769643475" target="_blank" rel="noopener" aria-label="Tải StoryAI trên App Store">
             <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C32.3 141.2 0 184.8 0 273.5c0 26.2 4.8 53.3 14.4 81.2 12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-            <span class="asb-text"><small>Tải về trên</small><strong>App Store</strong></span>
+            <span class="asb-text"><small><span lang="vi">Tải về trên</span><span lang="en">Download on the</span></small><strong>App Store</strong></span>
           </a>
           <a class="btn-googleplay" href="https://play.google.com/store/apps/details?id=vn.storyai.story_ai" target="_blank" rel="noopener" aria-label="Tải StoryAI trên Google Play">
             <svg viewBox="0 0 512 512" aria-hidden="true"><path fill="url(#gpGrad)" d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z"/></svg>
-            <span class="asb-text"><small>Tải về trên</small><strong>Google Play</strong></span>
+            <span class="asb-text"><small><span lang="vi">Tải về trên</span><span lang="en">GET IT ON</span></small><strong>Google Play</strong></span>
           </a>
         </div>
       </div>
@@ -419,22 +498,25 @@
       <div class="foot-grid">
         <div class="foot-brand">
           <a class="brand" href="/"><img src="./assets/app-icon.png" alt="StoryAI" /> StoryAI</a>
-          <p>Ứng dụng đọc truyện AI tương tác. Bạn chọn, AI dệt truyện.</p>
+          <p lang="vi">Ứng dụng đọc truyện AI tương tác. Bạn chọn, AI dệt truyện.</p>
+          <p lang="en">An interactive AI storytelling app. You choose, AI weaves the tale.</p>
         </div>
         <div class="foot-links">
           <div class="foot-col">
-            <h4>Sản phẩm</h4>
-            <a href="https://apps.apple.com/app/id6769643475" target="_blank" rel="noopener">Tải trên App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=vn.storyai.story_ai" target="_blank" rel="noopener">Tải trên Google Play</a>
-            <a href="#features">Tính năng</a>
-            <a href="#how">Cách hoạt động</a>
+            <h4 lang="vi">Sản phẩm</h4>
+            <h4 lang="en">Product</h4>
+            <a href="https://apps.apple.com/app/id6769643475" target="_blank" rel="noopener"><span lang="vi">Tải trên App Store</span><span lang="en">Download on App Store</span></a>
+            <a href="https://play.google.com/store/apps/details?id=vn.storyai.story_ai" target="_blank" rel="noopener"><span lang="vi">Tải trên Google Play</span><span lang="en">Download on Google Play</span></a>
+            <a href="#features"><span lang="vi">Tính năng</span><span lang="en">Features</span></a>
+            <a href="#how"><span lang="vi">Cách hoạt động</span><span lang="en">How it works</span></a>
             <a href="https://www.tiktok.com/@StoryAI_VN" target="_blank" rel="noopener">TikTok</a>
           </div>
           <div class="foot-col">
-            <h4>Hỗ trợ</h4>
-            <a href="./support.html">Trung tâm hỗ trợ</a>
-            <a href="./privacy.html">Chính sách bảo mật</a>
-            <a href="mailto:danhhuongvn@gmail.com">Liên hệ</a>
+            <h4 lang="vi">Hỗ trợ</h4>
+            <h4 lang="en">Support</h4>
+            <a href="./support.html"><span lang="vi">Trung tâm hỗ trợ</span><span lang="en">Help center</span></a>
+            <a href="./privacy.html"><span lang="vi">Chính sách bảo mật</span><span lang="en">Privacy policy</span></a>
+            <a href="mailto:danhhuongvn@gmail.com"><span lang="vi">Liên hệ</span><span lang="en">Contact</span></a>
           </div>
         </div>
       </div>
