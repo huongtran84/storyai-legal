@@ -31,18 +31,38 @@
       };
       function setDesc(s) { var m = document.querySelector('meta[name="description"]'); if (m) m.setAttribute('content', s); }
       function apply(l) { d.setAttribute('data-lang', l); d.setAttribute('lang', l); if (META[l]) { document.title = META[l].t; setDesc(META[l].d); } }
-      function resolve() {
+      // Explicit user choice (?lang= or saved toggle) — always wins over geo.
+      function override() {
         var q = null, s = null;
         try { q = new URLSearchParams(location.search).get('lang'); } catch (e) {}
         try { s = localStorage.getItem('lang'); } catch (e) {}
-        var l = q || s || d.getAttribute('data-lang');
-        if (l !== 'vi' && l !== 'en') {
-          var n = navigator.languages || [navigator.language || 'en'];
-          l = n.some(function (x) { return (x || '').toLowerCase().indexOf('vi') === 0; }) ? 'vi' : 'en';
-        }
-        return l;
+        if (q === 'vi' || q === 'en') return q;
+        if (s === 'vi' || s === 'en') return s;
+        return null;
       }
-      apply(resolve());
+      // Instant first-paint guess: override > server data-lang (if the Pages
+      // function ran) > browser language. Matches the geo result in the common
+      // case, so the async geo refine below rarely causes a visible switch.
+      function guess() {
+        var o = override();
+        if (o) return o;
+        var dl = d.getAttribute('data-lang');
+        if (dl === 'vi' || dl === 'en') return dl;
+        var n = navigator.languages || [navigator.language || 'en'];
+        return n.some(function (x) { return (x || '').toLowerCase().indexOf('vi') === 0; }) ? 'vi' : 'en';
+      }
+      apply(guess());
+      // Geo refine via Cloudflare's built-in endpoint (loc=VN -> vi, else en).
+      // Skipped if the visitor explicitly picked a language.
+      if (!override()) {
+        fetch('/cdn-cgi/trace').then(function (r) { return r.text(); }).then(function (t) {
+          if (override()) return;
+          var m = /(?:^|\n)loc=([A-Z]{2})/.exec(t);
+          if (!m) return;
+          var geo = m[1] === 'VN' ? 'vi' : 'en';
+          if (geo !== d.getAttribute('data-lang')) apply(geo);
+        }).catch(function () {});
+      }
       window.__setLang = function (l) { if (l !== 'vi' && l !== 'en') return; try { localStorage.setItem('lang', l); } catch (e) {} apply(l); };
       document.addEventListener('DOMContentLoaded', function () {
         var t = document.querySelector('.lang-toggle');
