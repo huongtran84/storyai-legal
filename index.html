@@ -18,10 +18,10 @@
   <link rel="icon" type="image/png" href="./assets/app-icon.png" />
   <link rel="apple-touch-icon" href="./assets/app-icon.png" />
   <script>
-    // Language: vi for visitors in Vietnam, en elsewhere. The Cloudflare Pages
-    // function (functions/_middleware.js) sets data-lang server-side from the
-    // request country (no flash, correct for crawlers); this script handles a
-    // manual override (?lang= or saved choice) and the nav VI|EN toggle.
+    // Language: vi for visitors in Vietnam, en elsewhere. This site is a
+    // Cloudflare Worker serving static assets (no Worker script), so geo is
+    // detected here on the client via Cloudflare's /cdn-cgi/trace endpoint.
+    // A manual override (?lang= or the saved VI|EN toggle choice) always wins.
     (function () {
       var d = document.documentElement;
       d.classList.add('js');
@@ -40,9 +40,9 @@
         if (s === 'vi' || s === 'en') return s;
         return null;
       }
-      // Instant first-paint guess: override > server data-lang (if the Pages
-      // function ran) > browser language. Matches the geo result in the common
-      // case, so the async geo refine below rarely causes a visible switch.
+      // Instant first-paint guess: override > browser language. Matches the geo
+      // result in the common case (VN phones are set to vi), so the async geo
+      // refine below rarely causes a visible switch.
       function guess() {
         var o = override();
         if (o) return o;
