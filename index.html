@@ -51,10 +51,13 @@
         var n = navigator.languages || [navigator.language || 'en'];
         return n.some(function (x) { return (x || '').toLowerCase().indexOf('vi') === 0; }) ? 'vi' : 'en';
       }
+      // data-lang set on <html> server-side means the Worker already resolved
+      // the country (no flash, correct for crawlers) — capture it before apply.
+      var serverLang = d.getAttribute('data-lang');
       apply(guess());
-      // Geo refine via Cloudflare's built-in endpoint (loc=VN -> vi, else en).
-      // Skipped if the visitor explicitly picked a language.
-      if (!override()) {
+      // Fallback geo only when the Worker did not run (no server data-lang) and
+      // the visitor hasn't explicitly chosen: detect via Cloudflare /cdn-cgi/trace.
+      if (!override() && serverLang !== 'vi' && serverLang !== 'en') {
         fetch('/cdn-cgi/trace').then(function (r) { return r.text(); }).then(function (t) {
           if (override()) return;
           var m = /(?:^|\n)loc=([A-Z]{2})/.exec(t);
