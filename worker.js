@@ -1,14 +1,30 @@
-// Landing-page language by visitor country: Vietnam -> vi, elsewhere -> en.
+// Landing-page language by visitor country: VN -> vi, ID -> id, JP -> ja, elsewhere -> en.
 // Only "/" and "/index.html" reach this Worker (see run_worker_first in
 // wrangler.jsonc); all other assets are served directly. Everything is wrapped
 // so that any failure falls back to serving the untransformed asset.
 
-const EN = {
-  title: 'StoryAI · You choose. AI weaves the tale.',
-  description:
-    'StoryAI — an interactive AI storytelling app. Every choice you make leads AI to write a different story. Romance, horror, fantasy, school life.',
-  ogTitle: 'StoryAI · You choose. AI weaves the tale.',
-  ogDescription: 'An interactive AI storytelling app. Every choice opens a new branch.',
+const L10N = {
+  en: {
+    title: 'StoryAI · You choose. AI weaves the tale.',
+    description:
+      'StoryAI — an interactive AI storytelling app. Every choice you make leads AI to write a different story. Romance, horror, fantasy, school life.',
+    ogTitle: 'StoryAI · You choose. AI weaves the tale.',
+    ogDescription: 'An interactive AI storytelling app. Every choice opens a new branch.',
+  },
+  id: {
+    title: 'StoryAI · Kamu memilih. AI merangkai cerita.',
+    description:
+      'StoryAI — aplikasi cerita AI interaktif. Setiap pilihanmu membuat AI menulis cerita yang berbeda. Romansa, horor, fantasi, drama sekolah.',
+    ogTitle: 'StoryAI · Kamu memilih. AI merangkai cerita.',
+    ogDescription: 'Aplikasi cerita AI interaktif. Setiap pilihan membuka cabang baru.',
+  },
+  ja: {
+    title: 'StoryAI · 選ぶのはあなた。紡ぐのはAI。',
+    description:
+      'StoryAI — インタラクティブAIストーリーアプリ。あなたの選択でAIが異なる物語を書き続けます。恋愛、ホラー、ファンタジー、学園ドラマ。',
+    ogTitle: 'StoryAI · 選ぶのはあなた。紡ぐのはAI。',
+    ogDescription: 'インタラクティブAIストーリーアプリ。選ぶたびに新しい分岐が開く。',
+  },
 };
 
 export default {
@@ -25,7 +41,7 @@ export default {
 
       const country =
         (request.cf && request.cf.country) || request.headers.get('cf-ipcountry') || '';
-      const lang = country === 'VN' ? 'vi' : 'en';
+      const lang = { VN: 'vi', ID: 'id', JP: 'ja' }[country] || 'en';
 
       let rewriter = new HTMLRewriter().on('html', {
         element(el) {
@@ -34,12 +50,13 @@ export default {
         },
       });
 
-      if (lang === 'en') {
+      const meta = L10N[lang];
+      if (meta) {
         rewriter = rewriter
-          .on('title', { element(el) { el.setInnerContent(EN.title); } })
-          .on('meta[name="description"]', { element(el) { el.setAttribute('content', EN.description); } })
-          .on('meta[property="og:title"]', { element(el) { el.setAttribute('content', EN.ogTitle); } })
-          .on('meta[property="og:description"]', { element(el) { el.setAttribute('content', EN.ogDescription); } });
+          .on('title', { element(el) { el.setInnerContent(meta.title); } })
+          .on('meta[name="description"]', { element(el) { el.setAttribute('content', meta.description); } })
+          .on('meta[property="og:title"]', { element(el) { el.setAttribute('content', meta.ogTitle); } })
+          .on('meta[property="og:description"]', { element(el) { el.setAttribute('content', meta.ogDescription); } });
       }
 
       const transformed = rewriter.transform(assetResponse);
